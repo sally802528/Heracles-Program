@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公開資源 - 連結列表</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; font-family: 'Noto Sans TC', sans-serif; background: #f0f2f5; padding-top: 100px; text-align: center; }
+        nav { background: #222; padding: 15px; position: fixed; width: 100%; top: 0; z-index: 1000; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
+
+        .resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1000px; margin: 50px auto; padding: 0 20px; }
+        
+        /* 資源卡片 */
+        .res-card { background: white; border-radius: 20px; overflow: hidden; transition: 0.4s; box-shadow: 0 10px 30px rgba(0,0,0,0.1); cursor: pointer; border: none; }
+        .res-card:hover { transform: translateY(-15px); box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+        
+        .res-top { height: 200px; position: relative; overflow: hidden; }
+        .res-thumb { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.5s; }
+        .res-card:hover .res-thumb { transform: scale(1.1); }
+        .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: rgba(255,0,0,0.9); border-radius: 50%; display: flex; justify-content: center; align-items: center; }
+        .play-btn::after { content: ""; border-style: solid; border-width: 10px 0 10px 18px; border-color: transparent transparent transparent white; margin-left: 5px; }
+
+        .res-bottom { background: #444; padding: 25px; color: white; font-size: 1.3rem; font-weight: bold; }
+
+        /* 彈窗樣式 */
+        #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-box { background: white; width: 90%; max-width: 400px; border-radius: 20px; padding: 30px; text-align: left; animation: pop 0.3s; }
+        @keyframes pop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .yt-link { display: block; padding: 15px; background: #f0f0f0; margin-bottom: 10px; border-radius: 10px; text-decoration: none; color: #333; font-weight: bold; transition: 0.3s; }
+        .yt-link:hover { background: #ff0000; color: white; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">首頁</a>
+        <a href="records.html">紀錄頁</a>
+        <a href="resources.html" style="color: #ffeb3b;">公開資源</a>
+        <a href="about.html">關於我們</a>
+    </nav>
+
+    <h1>公開資源</h1>
+    <p>提供跨科系合作的專業技術分享與教學內容。</p>
+
+    <div class="resource-grid">
+        <div class="res-card" id="yt-trigger">
+            <div class="res-top">
+                <div class="res-thumb" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800');"></div>
+                <div class="play-btn"></div>
+            </div>
+            <div class="res-bottom">YouTube 頻道</div>
+        </div>
+        <div class="res-card" style="opacity: 0.6; cursor: default;">
+            <div class="res-top">
+                <div class="res-thumb" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800');"></div>
+            </div>
+            <div class="res-bottom">敬請期待</div>
+        </div>
+    </div>
+
+    <div id="modal">
+        <div class="modal-box">
+            <h3>YouTube 連結</h3>
+            <a href="https://youtube.com/playlist?list=PLs9OF90VHRwFr6tp28re1Qn0LsnqiFx5S&si=ODxnSLbbfGtrN86b" class="yt-link" target="_blank">▶ 【Arduino SpeedUp】快速上手系列全集！</a>
+            <a href="https://www.youtube.com/@joechuang" class="yt-link" target="_blank">▶ 莊凱喬電學講堂</a>
+            <button onclick="document.getElementById('modal').style.display='none'" style="width: 100%; margin-top: 10px; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">關閉</button>
+        </div>
+    </div>
+
+    <script>
+        const trigger = document.getElementById('yt-trigger');
+        const modal = document.getElementById('modal');
+        trigger.onclick = () => modal.style.display = 'flex';
+        window.onclick = (e) => { if(e.target == modal) modal.style.display = 'none'; }
+    </script>
+</body>
+</html>

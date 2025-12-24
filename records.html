@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紀錄頁 - 赫拉克勒斯計畫</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #222; --accent: #48c9b0; --blue: #3498db; --bg: #f8f9fa; }
+        body { margin: 0; font-family: 'Noto Sans TC', sans-serif; background: var(--bg); padding-top: 100px; }
+        nav { background: var(--primary); padding: 15px; position: fixed; width: 100%; top: 0; z-index: 1000; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; transition: 0.3s; }
+        nav a:hover { color: #ffeb3b; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
+        .desc { color: #666; margin-bottom: 40px; }
+
+        /* 公告欄卡片佈局 [參考 image_6435cd.jpg] */
+        .record-list { display: grid; gap: 25px; }
+        .record-item { 
+            background: white; border-radius: 15px; display: flex; 
+            overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            transition: 0.3s; position: relative;
+        }
+        .record-item:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        
+        /* 圖片區 */
+        .item-img { width: 320px; background-size: cover; background-position: center; flex-shrink: 0; }
+        
+        /* 內容區 */
+        .item-body { padding: 35px; flex-grow: 1; }
+
+        /* 可點擊標籤樣式 [關鍵修正：將文字改為按鈕連結] */
+        .badge { 
+            display: inline-block; padding: 6px 16px; 
+            background: var(--accent); color: white; 
+            border-radius: 6px; font-weight: bold; 
+            font-size: 0.85rem; text-decoration: none; 
+            margin-bottom: 15px; transition: 0.2s;
+            cursor: pointer; position: relative; z-index: 10;
+        }
+        .badge:hover { background: #3dae98; transform: scale(1.05); }
+        .badge.service { background: var(--blue); }
+        .badge.service:hover { background: #2980b9; }
+
+        .item-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 12px; color: #222; }
+        .item-text { color: #777; line-height: 1.6; margin-bottom: 25px; font-size: 1.05rem; }
+        
+        /* 閱讀更多連結 */
+        .more-link { 
+            font-weight: bold; display: flex; align-items: center; 
+            color: #333; text-decoration: none; 
+        }
+        .more-link::after { content: "→"; margin-left: 10px; transition: 0.3s; }
+        .record-item:hover .more-link::after { transform: translateX(8px); }
+
+        /* 覆蓋整張卡片的隱形連結（排除標籤區域） */
+        .main-link { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+
+        @media (max-width: 768px) { .record-item { flex-direction: column; } .item-img { width: 100%; height: 220px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">首頁</a>
+        <a href="records.html" style="color: #ffeb3b;">紀錄頁</a>
+        <a href="resources.html">公開資源</a>
+        <a href="about.html">關於我們</a>
+    </nav>
+
+    <div class="container">
+        <h1>紀錄頁</h1>
+        <p class="desc">這裡是近期消息、新消息與專業交流紀錄。</p>
+
+        <div class="record-list">
+            <div class="record-item">
+                <a href="article-1.html" class="main-link"></a> <div class="item-img" style="background-image: url('S__75366406.jpg');"></div>
+                <div class="item-body">
+                    <a href="category-announcement.html" class="badge">競賽</a>
+                    <div class="item-title">第十屆綠色生活創意設計大賽榮獲金銀獎項</div>
+                    <div class="item-text">永靖高工製圖科與資訊科共同辛勞，並於第十屆綠色生活創意設計大賽中榮獲金銀獎項的佳績。</div>
+                    <div class="more-link">閱讀更多</div>
+                </div>
+            </div>
+
+            <!-- 未來可新增更多 record-item -->
+        </div>
+    </div>
+</body>
+</html>

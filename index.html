@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赫拉克勒斯計畫 - 首頁</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body, html { margin: 0; padding: 0; font-family: 'Noto Sans TC', sans-serif; overflow: hidden; background: #000; }
+        nav { background: #222; padding: 15px; position: fixed; width: 100%; top: 0; z-index: 1000; text-align: center; border-bottom: 1px solid #333; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; opacity: 0.8; transition: 0.3s; }
+        nav a:hover { opacity: 1; color: #ffeb3b; }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center;
+        }
+
+        .type-box { font-size: 3.5rem; font-weight: 700; min-height: 1.2em; display: flex; align-items: center; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .cursor { margin-left: 10px; width: 4px; height: 3.5rem; background-color: #ffeb3b; animation: blink 0.8s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+        
+        .sub-text { font-size: 1.2rem; margin-top: 20px; opacity: 0.8; letter-spacing: 4px; animation: fadeIn 2s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 0.8; transform: translateY(0); } }
+
+        @media (max-width: 768px) { .type-box { font-size: 2rem; } .cursor { height: 2rem; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" style="color: #ffeb3b;">首頁</a>
+        <a href="records.html">紀錄頁</a>
+        <a href="resources.html">公開資源</a>
+        <a href="about.html">關於我們</a>
+    </nav>
+
+    <header class="hero">
+        <div class="type-box">
+            <span id="type-text"></span><span class="cursor"></span>
+        </div>
+        <p class="sub-text">共同合作 共同進步</p>
+    </header>
+
+    <script>
+        const textEl = document.getElementById('type-text');
+        const phrases = ["赫拉克勒斯計畫","Heracles Program", "推廣赫拉克勒斯精神", "共同完成偉大目標", "朝同一目標前進"];
+        let i = 0, j = 0, isDeleting = false;
+
+        function loop() {
+            const currentStr = phrases[i];
+            textEl.innerHTML = currentStr.substring(0, j);
+            let speed = isDeleting ? 80 : 150;
+
+            if (!isDeleting && j < currentStr.length) { j++; } 
+            else if (isDeleting && j > 0) { j--; } 
+            else if (!isDeleting && j === currentStr.length) { 
+                speed = 5000; // 停留 5 秒，解決最後一字卡頓問題
+                isDeleting = true; 
+            } 
+            else { isDeleting = false; i = (i + 1) % phrases.length; speed = 500; }
+            setTimeout(loop, speed);
+        }
+        window.onload = loop;
+    </script>
+</body>
+</html>
